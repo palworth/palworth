@@ -14,5 +14,6 @@ class FoodController < ApplicationController
 
       json = JSON.parse(response.body, symbolize_names: true)
       @foods = json[:foods]
+      binding.pry
     end
 end
