@@ -6,11 +6,11 @@ class FoodController < ApplicationController
       food_word_2 = food_collection[1]
         
       conn = Faraday.new(url: "https://api.nal.usda.gov") do |faraday|
-         faraday.headers["api_key"] = 'xvfkfIcQZo29ZuBs2BFPSkibeYZGKcaUeg6pZYk2'
+         faraday.headers["api_key"] = ENV["FOOD_DATA_API_KEY"]
       end
 
         
-      response = conn.get("/fdc/v1/search?api_key=xvfkfIcQZo29ZuBs2BFPSkibeYZGKcaUeg6pZYk2\&generalSearchInput=#{food_word_1}%20#{food_word_2}")
+      response = conn.get("/fdc/v1/search?api_key=#{ENV["FOOD_DATA_API_KEY"]}\&generalSearchInput=#{food_word_1}%20#{food_word_2}")
 
       json = JSON.parse(response.body, symbolize_names: true)
       @foods = json[:foods]

@@ -21,12 +21,9 @@ feature "User can search for foods " do
         
     click_on "Search"
     expect(current_path).to eq("/foods")
-      save_and_open_page
-    # Then my path should be "/search" with "state=CO" in the parameters
+
     expect(page).to have_content("50 Results")
-    # And I should see a message "7 Results"
     expect(page).to have_css(".food", count: 50)
-    # And I should see a list of 7 the members of the house for Colorado
 
     within(first(".food")) do
       expect(page).to have_css(".brandOwner")
@@ -34,8 +31,6 @@ feature "User can search for foods " do
       expect(page).to have_css(".description")
       expect(page).to have_css(".ingredients")
     end
-    # And they should be ordered by seniority from most to least
-    # And I should see a name, role, party, and district for each member
 
   end
 end
